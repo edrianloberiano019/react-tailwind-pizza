@@ -1,14 +1,16 @@
-const jwtReducer = (state = "", action) => {
+const jwtReducer = (state = {}, action) => {
     switch (action.type) {
         case "logout":
-            //Logout Function
-            state = ""
+            localStorage.removeItem("token")
+            state = { status: 0, token: "" }
             return state
         case "login":
-            //Login Function
-            state = "Login"
+            state = action.payload
+            localStorage.setItem("token", action.payload.token)
             return state
         default:
+            const token = localStorage.getItem("token") || null
+            state = { status: 0, token: token }
             return state
     }
 }

@@ -1,6 +1,8 @@
 import React, { useState } from "react"
+import { Route, useRouteMatch } from "react-router-dom"
 import SideNav from "../components/navbar/SideNav"
 import TopNav from "../components/navbar/TopNav"
+import { DashboardRouter } from "./dashboard/DashboardRouter"
 import Main from "./dashboard/Main"
 
 const Dashboard = () => {
@@ -11,6 +13,8 @@ const Dashboard = () => {
         console.log(isNavOpen)
     }
 
+    let { path, url } = useRouteMatch()
+
     return (
         <div className="flex h-screen bg-gray-200">
             <div
@@ -18,12 +22,18 @@ const Dashboard = () => {
                             ${isNavOpen ? "block" : "hidden"}`}
                 onClick={toggleNav}
             ></div>
-            <SideNav isNavOpen={isNavOpen} />
+            <SideNav isNavOpen={isNavOpen} url={url} />
             <div className="flex flex-col flex-1 overflow-hidden">
                 <TopNav toggleNav={toggleNav} />
                 <main className="flex-1 overflow-x-hidden overflow-y-auto bg-purple-50">
                     <div className="container px-6 py-8 mx-auto">
-                        <Main />
+                        <Route exact path={path}>
+                            <Main />
+                        </Route>
+                        <Route path={`${path}:page`}>
+                            {console.log(path)}
+                            <DashboardRouter />
+                        </Route>
                     </div>
                 </main>
             </div>

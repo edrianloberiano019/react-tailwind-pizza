@@ -1,18 +1,18 @@
 export const navbar_data = [
     {
         name: "Home",
-        link: "/",
+        link: "/dashboard",
         icon: "fas fa-home",
     },
     {
-        name: "Login",
-        link: "/login",
+        name: "Messages",
+        link: "/dashboard/messages",
         icon: "fas fa-sign-in-alt",
     },
     {
-        name: "Register",
-        link: "/register",
-        icon: "fas fa-user-plus",
+        name: "Reports",
+        link: "/dashboard/reports",
+        icon: "fas fa-home",
     },
     {
         name: "Logout",
