@@ -1,7 +1,6 @@
 import React from "react"
-import { capitalizeFirstLetter } from "../../../libraries/functions"
 
-const TableColumns = ({ data }) => {
+const TableRow = ({ data }) => {
     return (
         <tr className="cursor-pointer hover:bg-gray-300">
             <td className="py-4 pl-6 whitespace-no-wrap border-b border-gray-200">
@@ -40,10 +39,12 @@ const TableColumns = ({ data }) => {
                 {data.type}
             </td>
             <td className="px-6 py-4 text-sm font-medium leading-5 text-right whitespace-no-wrap border-b border-gray-200">
-                <div className="text-indigo-600 hover:text-indigo-900">Edit</div>
+                <div className="text-indigo-600 hover:text-indigo-900">
+                    <i className="fas fa-edit"></i>
+                </div>
             </td>
         </tr>
     )
 }
 
-export default TableColumns
+export default TableRow

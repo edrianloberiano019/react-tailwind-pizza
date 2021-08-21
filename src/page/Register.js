@@ -5,7 +5,6 @@ import * as Yup from "yup"
 import { useDispatch } from "react-redux"
 import { bindActionCreators } from "redux"
 import { loginActionCreators } from "../libraries/services/action"
-import { Link } from "react-router-dom"
 
 const validationSchema = Yup.object({
     username: Yup.string().min(8, "Too Short!").max(16, "Too Long!").required("Required"),

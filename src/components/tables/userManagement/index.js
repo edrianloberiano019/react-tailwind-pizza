@@ -1,6 +1,6 @@
 import React from "react"
 import { useEffect } from "react"
-import TableColumns from "./TableColumns"
+import TableRow from "./TableRow"
 
 import { useDispatch, useSelector } from "react-redux"
 import { bindActionCreators } from "redux"
@@ -14,7 +14,8 @@ const Table = () => {
     const usersActions = bindActionCreators(usersActionCreators, dispatch)
     useEffect(() => {
         usersActions.initData(token)
-    }, [])
+        // eslint-disable-next-line
+    }, [token])
 
     return (
         <div className="py-2 mt-3 -my-2 overflow-x-auto">
@@ -41,7 +42,7 @@ const Table = () => {
                     </thead>
                     <tbody className="bg-white">
                         {usersState.map((item, index) => {
-                            return <TableColumns data={item} key={index} />
+                            return <TableRow data={item} key={index} />
                         })}
                     </tbody>
                 </table>
