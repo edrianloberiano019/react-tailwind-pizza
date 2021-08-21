@@ -1,1 +1,2 @@
-export * as actionCreators from "./loginAction"
+export * as loginActionCreators from "./loginAction"
+export * as usersActionCreators from "./usersAction"

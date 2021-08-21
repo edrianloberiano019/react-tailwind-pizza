@@ -25,7 +25,7 @@ const Dashboard = () => {
             <SideNav isNavOpen={isNavOpen} url={url} />
             <div className="flex flex-col flex-1 overflow-hidden">
                 <TopNav toggleNav={toggleNav} />
-                <main className="flex-1 overflow-x-hidden overflow-y-auto bg-purple-50">
+                <main className="flex-1 overflow-x-hidden overflow-y-auto bg-trueGray-200">
                     <div className="container px-6 py-8 mx-auto">
                         <Route exact path={path}>
                             <Main />

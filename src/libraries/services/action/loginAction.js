@@ -44,7 +44,7 @@ export const register = (payload) => {
             console.log(res.data)
 
             dispatch({
-                type: "login",
+                type: "register",
                 payload: res.data,
             })
         })

@@ -4,7 +4,7 @@ import * as Yup from "yup"
 
 import { useDispatch } from "react-redux"
 import { bindActionCreators } from "redux"
-import { actionCreators } from "../libraries/services/action"
+import { loginActionCreators } from "../libraries/services/action"
 import { Link } from "react-router-dom"
 
 const validationSchema = Yup.object({
@@ -26,7 +26,7 @@ const Register = () => {
     }
 
     const dispatch = useDispatch()
-    const loginActions = bindActionCreators(actionCreators, dispatch)
+    const loginActions = bindActionCreators(loginActionCreators, dispatch)
 
     const onSubmit = (params) => {
         loginActions.register(params)

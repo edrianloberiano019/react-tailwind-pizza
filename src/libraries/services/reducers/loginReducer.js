@@ -1,4 +1,4 @@
-const jwtReducer = (state = {}, action) => {
+const loginReducer = (state = {}, action) => {
     switch (action.type) {
         case "logout":
             localStorage.removeItem("token")
@@ -15,4 +15,4 @@ const jwtReducer = (state = {}, action) => {
     }
 }
 
-export default jwtReducer
+export default loginReducer
