@@ -9,9 +9,7 @@ import TokenChecker from "./libraries/services/TokenChecker"
 import Logout from "./page/Logout"
 
 function App() {
-    const state = useSelector((state) => state)
-
-    const token = state.jwtToken.token
+    const token = useSelector((state) => state.loginReducer.token)
 
     return (
         <div>

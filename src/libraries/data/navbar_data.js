@@ -15,6 +15,11 @@ export const navbar_data = [
         icon: "fas fa-home",
     },
     {
+        name: "User Management",
+        link: "/dashboard/usermanagement",
+        icon: "fas fa-home",
+    },
+    {
         name: "Logout",
         link: "/logout",
         icon: "fas fa-sign-out-alt",

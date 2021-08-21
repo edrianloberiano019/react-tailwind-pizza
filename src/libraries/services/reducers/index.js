@@ -1,8 +1,8 @@
 import { combineReducers } from "redux"
-import jwtReducer from "./jwtReducer"
+import loginReducer from "./loginReducer"
 
 const reducers = combineReducers({
-    jwtToken: jwtReducer,
+    loginReducer: loginReducer,
 })
 
 export default reducers

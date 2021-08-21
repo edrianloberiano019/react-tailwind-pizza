@@ -27,3 +27,26 @@ export const logout = () => {
         })
     }
 }
+
+export const register = (payload) => {
+    return (dispatch) => {
+        const user = {
+            user: payload.username,
+            pass: payload.password,
+            email: payload.email,
+            name: payload.name_last.trim() + ", " + payload.name_first.trim() + " " + payload.name_middle.trim(),
+            name_first: payload.name_first,
+            name_middle: payload.name_middle,
+            name_last: payload.name_last,
+        }
+        console.log(user)
+        return axios.post(`${restApi}/users/`, user).then((res) => {
+            console.log(res.data)
+
+            dispatch({
+                type: "login",
+                payload: res.data,
+            })
+        })
+    }
+}

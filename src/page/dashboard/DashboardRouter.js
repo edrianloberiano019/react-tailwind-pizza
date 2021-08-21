@@ -1,12 +1,9 @@
 import React from "react"
 import { useParams } from "react-router-dom"
+import UserManagement from "./UserManagement"
 
 export const DashboardRouter = () => {
     let { page } = useParams()
 
-    return (
-        <div>
-            <h3>{page}</h3>
-        </div>
-    )
+    return <>{page === "usermanagement" && <UserManagement />}</>
 }

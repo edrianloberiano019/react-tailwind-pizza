@@ -5,6 +5,7 @@ import * as Yup from "yup"
 import { useDispatch } from "react-redux"
 import { bindActionCreators } from "redux"
 import { actionCreators } from "../libraries/services/action"
+import { Link } from "react-router-dom"
 
 const validationSchema = Yup.object({
     username: Yup.string().min(8, "Too Short!").max(16, "Too Long!").required("Required"),
@@ -38,7 +39,7 @@ const Login = () => {
                                 <div className="flex flex-col justify-center flex-1 mb-8">
                                     <h1 className="text-4xl font-thin text-center">Welcome Back</h1>
                                     <div className="w-full mt-4">
-                                        <Form className="w-3/4 mx-auto form-horizontal" method="POST" action="#">
+                                        <Form className="w-3/4 mx-auto form-horizontal">
                                             <div className="flex flex-col mt-4">
                                                 <Field
                                                     id="username"
@@ -85,12 +86,20 @@ const Login = () => {
                                             </div>
                                         </Form>
                                         <div className="mt-4 text-center">
-                                            <a
+                                            <Link
                                                 className="text-xs no-underline hover:underline text-blue-dark"
-                                                href="{{ route('password.request') }}"
+                                                to="/password-reset"
                                             >
                                                 Forgot Your Password?
-                                            </a>
+                                            </Link>
+                                        </div>
+                                        <div className="mt-4 text-center">
+                                            <Link
+                                                className="text-xs no-underline hover:underline text-blue-dark"
+                                                to="/register"
+                                            >
+                                                Register
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
