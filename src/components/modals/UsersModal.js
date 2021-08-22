@@ -7,6 +7,8 @@ import { useDispatch } from "react-redux"
 import { bindActionCreators } from "redux"
 import { loginActionCreators } from "../../libraries/services/action"
 import SelectDropdown from "../SelectDropdown"
+import accountStatus from "../../libraries/logicJsx/accountStatus"
+import rolesIcon from "../../libraries/logicJsx/rolesIcon"
 
 const validationSchema = Yup.object({
     username: Yup.string().min(8, "Too Short!").max(16, "Too Long!").required("Required"),
@@ -19,7 +21,16 @@ const validationSchema = Yup.object({
 const UsersModal = ({ isOpen, toggleOpen }) => {
     const cancelButtonRef = useRef(null)
 
-    const role = [{ name: "Home", avatar: "fas fa-home" }]
+    const accountStatusData = [
+        { name: "Pending", avatar: "pending" },
+        { name: "Approved", avatar: "approved" },
+        { name: "Declined", avatar: "declined" },
+    ]
+    const role = [
+        { name: "Developer", avatar: "developer" },
+        { name: "Encoder", avatar: "encoder" },
+        { name: "Admin", avatar: "admin" },
+    ]
 
     const initialValues = {
         username: "",
@@ -75,7 +86,7 @@ const UsersModal = ({ isOpen, toggleOpen }) => {
                     >
                         <div className="inline-block w-full overflow-visible text-left align-bottom transition-all transform rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-lg">
                             <div className="flex items-center justify-center">
-                                <div className="absolute top-0 flex items-center justify-center top-10">
+                                <div className="absolute flex items-center justify-center top-3 sm:top-12">
                                     <img
                                         className="object-cover w-20 h-20 rounded-full"
                                         src="https://images.unsplash.com/photo-1484608856193-968d2be4080e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2134&q=80"
@@ -96,10 +107,9 @@ const UsersModal = ({ isOpen, toggleOpen }) => {
                                         </button>
                                     </div>
                                     <div className="flex flex-col items-center justify-around w-full bg-white rounded-t-md bg-gray-50">
-                                        <div className="flex items-center justify-between w-full pt-2 pl-7">
-                                            <div className="flex flex-col items-center justify-center">
-                                                <h1 className="text-xs text-gray-500">Account Status</h1>
-                                                <SelectDropdown data={role} />
+                                        <div className="flex items-center justify-between w-full px-4 pt-2 mb-3 sm:mb-0">
+                                            <div className="w-full sm:max-w-[150px]">
+                                                <SelectDropdown data={accountStatusData} icons={accountStatus} />
                                             </div>
                                             {/* <div className="flex flex-col items-center justify-center">
                                                 <h1 className="text-xs text-gray-500">Spent</h1>
@@ -108,7 +118,7 @@ const UsersModal = ({ isOpen, toggleOpen }) => {
                                         </div>
                                         <div className="flex flex-col items-center justify-center w-full">
                                             <h1 className="font-bold text-gray-700">Maria R.</h1>
-                                            <h1 className="mb-5 text-sm text-gray-500">New York, USA</h1>
+                                            {/* <h1 className="text-sm text-gray-500 ">New York, USA</h1> */}
                                             <Formik
                                                 onSubmit={onSubmit}
                                                 initialValues={initialValues}
@@ -126,7 +136,7 @@ const UsersModal = ({ isOpen, toggleOpen }) => {
                                                                         id="email"
                                                                         name="email"
                                                                         type="email"
-                                                                        className="w-full py-2 pl-3 pr-3 border-2 border-gray-200 rounded-lg outline-none focus:border-indigo-500"
+                                                                        className="w-full py-2 pl-3 pr-3 border-2 border-gray-300 rounded-lg outline-none focus:border-indigo-500"
                                                                         placeholder="johnsmith@example.com"
                                                                     />
                                                                     <ErrorMessage name="email">
@@ -149,7 +159,7 @@ const UsersModal = ({ isOpen, toggleOpen }) => {
                                                                         id="username"
                                                                         name="username"
                                                                         type="text"
-                                                                        className="w-full py-2 pl-3 pr-3 border-2 border-gray-200 rounded-lg outline-none focus:border-indigo-500"
+                                                                        className="w-full py-2 pl-3 pr-3 border-2 border-gray-300 rounded-lg outline-none focus:border-indigo-500"
                                                                         placeholder="John Carl"
                                                                     />
                                                                     <ErrorMessage name="username">
@@ -166,14 +176,11 @@ const UsersModal = ({ isOpen, toggleOpen }) => {
                                                                     Password
                                                                 </label>
                                                                 <div className="flex flex-col">
-                                                                    {/* <div className="z-10 flex items-center justify-center w-10 pl-1 text-center pointer-events-none">
-                                                        <i className="text-lg text-gray-400 mdi mdi-lock-outline" />
-                                                    </div> */}
                                                                     <Field
                                                                         id="password"
                                                                         name="password"
                                                                         type="password"
-                                                                        className="w-full py-2 pl-3 pr-3 border-2 border-gray-200 rounded-lg outline-none focus:border-indigo-500"
+                                                                        className="w-full py-2 pl-3 pr-3 border-2 border-gray-300 rounded-lg outline-none focus:border-indigo-500"
                                                                         placeholder="************"
                                                                     />
                                                                     <ErrorMessage name="password">
@@ -187,7 +194,8 @@ const UsersModal = ({ isOpen, toggleOpen }) => {
                                                             </div>
                                                         </div>
                                                         <div className="mx-4 mb-4">
-                                                            <SelectDropdown data={role} />
+                                                            <label className="px-1 text-xs font-semibold">Role</label>
+                                                            <SelectDropdown data={role} icons={rolesIcon} />
                                                         </div>
                                                         <label className="px-1 mx-5 text-sm font-semibold ">
                                                             System Access
@@ -218,6 +226,22 @@ const UsersModal = ({ isOpen, toggleOpen }) => {
                                                                 <span className="ml-2 text-gray-700">
                                                                     User Management
                                                                 </span>
+                                                            </label>
+                                                            <label className="inline-flex items-center mx-3 my-2">
+                                                                <input
+                                                                    type="checkbox"
+                                                                    className="w-5 h-5 border-2 rounded-full appearance-none checked:bg-pink-600 checked:border-transparent"
+                                                                    defaultChecked
+                                                                />
+                                                                <span className="ml-2 text-gray-700">Logout</span>
+                                                            </label>
+                                                            <label className="inline-flex items-center mx-3 my-2">
+                                                                <input
+                                                                    type="checkbox"
+                                                                    className="w-5 h-5 border-2 rounded-full appearance-none checked:bg-pink-600 checked:border-transparent"
+                                                                    defaultChecked
+                                                                />
+                                                                <span className="ml-2 text-gray-700">Logout</span>
                                                             </label>
                                                             <label className="inline-flex items-center mx-3 my-2">
                                                                 <input
