@@ -3,7 +3,7 @@ import React from "react"
 const TableRow = ({ data }) => {
     return (
         <tr className="cursor-pointer hover:bg-gray-300">
-            <td className="py-4 pl-6 whitespace-no-wrap border-b border-gray-200">
+            <td className="py-4 pl-6 whitespace-no-wrap border-b border-gray-200 bg-">
                 <div className="flex items-center">
                     <div className="flex-shrink-0 w-10 h-10">
                         <img
